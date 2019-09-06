@@ -28,6 +28,7 @@
         touch-action: none;
     }
 </style>
+<script src="functions.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         // All the following code is entered here.
@@ -38,26 +39,10 @@
     var scene = new BABYLON.Scene(engine);
 scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
     // Create a FreeCamera, and set its position to (x:0, y:5, z:-10).
-    var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(1, 1, 2), scene);
-camera.applyGravity=true
-camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
-    // Target the camera to scene origin.
-    camera.setTarget(BABYLON.Vector3.Zero());
-
-    // Attach the camera to the canvas.
-    camera.attachControl(canvas, false);
-
+   createCamera(scene,canvas)
     // Create a basic light, aiming 0,1,0 - meaning, to the sky.
-    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1,1,0), scene);
-
-    // Create a built-in "sphere" shape. 
-    var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', {segments:16, diameter:2}, scene);
-
-    // Move the sphere upward 1/2 of its height.
-    sphere.position.y = 1;
-     sphere.position.x = 0;
-      sphere.position.z= 0;
-
+    createLight(scene)
+    createSphere(scene)
     // Create a built-in "ground" shape.
     var ground = BABYLON.MeshBuilder.CreateGround('ground1', {height:10, width:10, subdivisions: 2}, scene);
 var box1 = BABYLON.MeshBuilder.CreateBox("box1", {}, scene); // default box
@@ -79,30 +64,19 @@ box1.material=myMaterial
 box2.material=myMaterial
 box3.material=myMaterial
 box4.material=myMaterial
-var sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", scene);
-sphereMaterial.specularColor = new BABYLON.Color3(0.5, 0.6, 0.87);
-//sphereMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
-sphereMaterial.ambientColor = new BABYLON.Color3(0.23, 0.98, 0.53);
-sphereMaterial.diffuseColor = new BABYLON.Color3(.6, .4, .9);
-sphere.material=sphereMaterial
 var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
 groundMaterial.specularColor = new BABYLON.Color3(0.5, 0.6, 0.87);
 groundMaterial.ambientColor = new BABYLON.Color3(0.23, 0.98, 0.53);
 groundMaterial.diffuseColor = new BABYLON.Color3(0, .3, .6);
 ground.material=groundMaterial
 scene.collisionsEnabled = true;
-camera.checkCollisions = true;
+
 ground.checkCollisions = true;
 box1.checkCollisions = true;
 box2.checkCollisions = true;
 box3.checkCollisions = true;
 box4.checkCollisions = true;
-sphere.checkCollisions = true;
-if (sphere.intersectsMesh(camera.ellipsoid, false)) {
-  sphere.material.emissiveColor = new BABYLON.Color4(1, 0, 0, 1);
-} else {
-  sphere.material.emissiveColor = new BABYLON.Color4(.0, .1, .1, .0);
-}
+
     // Return the created scene.
     return scene;
 }
