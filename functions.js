@@ -78,3 +78,12 @@ groundMaterial.diffuseColor = new BABYLON.Color3(0, .3, .6);
 ground.material=groundMaterial
 ground.checkCollisions = true;
 }
+
+
+function createModels(scene){
+ BABYLON.SceneLoader.ImportMesh("", "https://models.babylonjs.com/", "ufo.glb", scene, function (meshes) {          
+        scene.createDefaultCameraOrLight(true, true, true);
+        scene.createDefaultEnvironment();
+        
+    });   
+}
