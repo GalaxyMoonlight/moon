@@ -84,6 +84,13 @@ function createModels(scene){
  BABYLON.SceneLoader.ImportMesh("", "https://models.babylonjs.com/", "ufo.glb", scene, function (meshes) {          
         scene.createDefaultCameraOrLight(true, true, true);
         scene.createDefaultEnvironment();
-        
+        meshes[0].position=new BABYLON.Vector3(1,2,3)
     });   
+
+
+ BABYLON.SceneLoader.ImportMesh("", "https://models.babylonjs.com/", "solar_system.glb", scene, function (meshes) {         
+        scene.createDefaultCameraOrLight(true, true, true);
+        scene.createDefaultEnvironment();
+        meshes[0].position=new BABYLON.Vector3(3,1,2)
+    });
 }
