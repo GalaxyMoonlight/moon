@@ -93,4 +93,12 @@ function createModels(scene){
         scene.createDefaultEnvironment();
         meshes[0].position=new BABYLON.Vector3(3,1,2)
     });
+
+
+
+  BABYLON.SceneLoader.ImportMesh("", "https://models.babylonjs.com/", "fish.glb", scene, function (meshes) {          
+        scene.createDefaultCameraOrLight(true, true, true);
+        scene.createDefaultEnvironment();
+        
+    });
 }
