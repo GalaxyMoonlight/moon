@@ -121,7 +121,7 @@ var position = [];
   position.push({
     frame: 0,
     value: BABYLON.Vector3.Zero(),
-    outTangent: new BABYLON.Vector3(1, 0, 0)
+    outTangent: new BABYLON.Vector3(0, 0.10, 0)
   });
 
   position.push({
